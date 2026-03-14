@@ -32,7 +32,12 @@ $(document).ready(function(){
 
         characters.forEach(character => {
             const card = `
-            <div data-id="${character.id}" class="card" style="width: 18rem;">
+            <div data-id="${character.id}" class="card" style="width: 18rem; cursor: pointer;"
+            data-name="${character.name}"
+            data-gender="${character.gender}"
+            data-origin="${character.origin.name}"
+            data-location="${character.location.name}"
+            >
             <img src="${character.image}" class="card-img-top" alt="${character.name}">
             <div class="card-body">
                 <h5 class="card-title">${character.name}</h5>
@@ -60,6 +65,25 @@ $(document).ready(function(){
             }
         });
     });
+
+
+    //Show modal on card click
+    $('#character-grid').on('click', '.card', function(){
+        const name = $(this).data('name');
+        const gender = $(this).data('gender');
+        const origin = $(this).data('origin');
+        const location = $(this).data('location');
+
+        $('.modal-title').text(name);
+        $('#modal-gender').text(gender);
+        $('#modal-origin').text(origin);
+        $('#modal-location').text(location);
+
+        const modal = new bootstrap.Modal(document.getElementById('character-modal'));
+        modal.show();
+
+    });
+    
 
     //Initialize the app
     fetchCharacters();
