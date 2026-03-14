@@ -32,7 +32,8 @@ $(document).ready(function(){
 
         characters.forEach(character => {
             const card = `
-            <div data-id="${character.id}" class="card" style="width: 18rem; cursor: pointer;"
+            <div class="col-12 col-md-6 col-lg-4">
+            <div data-id="${character.id}" class="card" h-100 cursor: pointer;"
             data-name="${character.name}"
             data-gender="${character.gender}"
             data-origin="${character.origin.name}"
@@ -47,6 +48,7 @@ $(document).ready(function(){
                 </p>    
             </div>
             </div>
+            </div>
             `;
             characterGrid.append(card);
         });
@@ -56,7 +58,7 @@ $(document).ready(function(){
     $('#search-input').on('input', function(){
         const searchTerm = $(this).val().toLowerCase();
 
-        $('#character-grid .card').each(function(){
+        $('#character-grid .col-12' ).each(function(){
             const characterName = $(this).find('.card-title').text().toLowerCase();
             if(characterName.includes(searchTerm)){
                 $(this).show();
