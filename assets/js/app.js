@@ -37,8 +37,8 @@ $(document).ready(function(){
             <div class="card-body">
                 <h5 class="card-title">${character.name}</h5>
                 <p class="card-text">
-                    <strong>Species</strong>${character.species}<br>
-                    <strong>Status</strong>${character.status}<br>
+                    <strong>Species: </strong>${character.species}<br>
+                    <strong>Status: </strong>${character.status}<br>
                 </p>    
             </div>
             </div>
@@ -46,6 +46,20 @@ $(document).ready(function(){
             characterGrid.append(card);
         });
     }
+
+    //Dynamic search
+    $('#search-input').on('input', function(){
+        const searchTerm = $(this).val().toLowerCase();
+
+        $('#character-grid .card').each(function(){
+            const characterName = $(this).find('.card-title').text().toLowerCase();
+            if(characterName.includes(searchTerm)){
+                $(this).show();
+            }else{
+                $(this).hide();
+            }
+        });
+    });
 
     //Initialize the app
     fetchCharacters();
